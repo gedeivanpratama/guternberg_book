@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'book_response.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class BookResponse extends Equatable {
   final int count;
   final String next;
@@ -26,7 +26,7 @@ class BookResponse extends Equatable {
   List<Object?> get props => [count, next, previous, books];
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Book extends Equatable {
   final int id;
   final String title;
@@ -73,7 +73,7 @@ class Book extends Equatable {
       ];
 }
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Author extends Equatable {
   final String name;
   @JsonKey(name: "birth_year")

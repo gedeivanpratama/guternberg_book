@@ -21,7 +21,7 @@ Map<String, dynamic> _$BookResponseToJson(BookResponse instance) =>
       'count': instance.count,
       'next': instance.next,
       'previous': instance.previous,
-      'results': instance.books,
+      'results': instance.books.map((e) => e.toJson()).toList(),
     };
 
 Book _$BookFromJson(Map<String, dynamic> json) => Book(
@@ -55,8 +55,8 @@ Book _$BookFromJson(Map<String, dynamic> json) => Book(
 Map<String, dynamic> _$BookToJson(Book instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'authors': instance.authors,
-      'translators': instance.translators,
+      'authors': instance.authors.map((e) => e.toJson()).toList(),
+      'translators': instance.translators.map((e) => e.toJson()).toList(),
       'subjects': instance.subjects,
       'bookshelves': instance.bookshelves,
       'languages': instance.languages,
