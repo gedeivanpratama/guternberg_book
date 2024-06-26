@@ -22,6 +22,72 @@ void main() {
   });
 
   group(
+    'getBook',
+    () {
+      final tBookParams = 1;
+      final tBookResponse = Book.fromJson(jsonData["results"][0]);
+      Future<Response<dynamic>> requestBook() => mockDio.get(
+            "https://gutendex.com/book/$tBookParams",
+          );
+      test(
+        'should perform a GET request with the correct URL and id',
+        () async {
+          // Arrange
+          when(requestBook).thenAnswer(
+            (_) async => _successResponse(jsonData["results"][0], tBookParams),
+          );
+
+          // Act
+          await datasource.getBook(tBookParams);
+
+          // Assert
+          verify(
+            () => mockDio.get(
+              "https://gutendex.com/book/$tBookParams",
+            ),
+          );
+        },
+      );
+
+      test(
+        'should return Book when the response code is 200 (success)',
+        () async {
+          // Arrange
+          when(requestBook).thenAnswer(
+            (_) async => _successResponse(jsonData["results"][0], tBookParams),
+          );
+
+          // Act
+          final result = await datasource.getBook(tBookParams);
+
+          // Assert
+          expect(result, tBookResponse);
+        },
+      );
+
+      test(
+        'should throw an exception when the call to remote data source is unsuccessful',
+        () async {
+          // Arrange
+          when(requestBook).thenThrow(
+            DioException(
+              requestOptions: RequestOptions(
+                path: 'https://gutendex.com/books/$tBookParams',
+              ),
+            ),
+          );
+
+          // Act
+          final call = datasource.getBook;
+
+          // Assert
+          expect(() => call(tBookParams), throwsA(isA<DioException>()));
+        },
+      );
+    },
+  );
+
+  group(
     'getBooks',
     () {
       final tBookParams = BookParams(page: '1');
@@ -35,7 +101,9 @@ void main() {
         'should perform a GET request with the correct URL and query parameters',
         () async {
           // Arrange
-          when(requestBook).thenAnswer((_) async => _successResponse(jsonData));
+          when(requestBook).thenAnswer(
+            (_) async => _successResponses(jsonData),
+          );
 
           // Act
           await datasource.getBooks(tBookParams);
@@ -54,7 +122,9 @@ void main() {
         'should return BookResponse when the response code is 200 (success)',
         () async {
           // Arrange
-          when(requestBook).thenAnswer((_) async => _successResponse(jsonData));
+          when(requestBook).thenAnswer(
+            (_) async => _successResponses(jsonData),
+          );
 
           // Act
           final result = await datasource.getBooks(tBookParams);
@@ -87,10 +157,18 @@ void main() {
   );
 }
 
-Response<dynamic> _successResponse(jsonData) => Response(
+Response<dynamic> _successResponses(jsonData) => Response(
       data: jsonData,
       statusCode: 200,
       requestOptions: RequestOptions(
         path: 'https://gutendex.com/books',
+      ),
+    );
+
+Response<dynamic> _successResponse(jsonData, params) => Response(
+      data: jsonData,
+      statusCode: 200,
+      requestOptions: RequestOptions(
+        path: 'https://gutendex.com/books/$params',
       ),
     );

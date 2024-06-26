@@ -4,6 +4,7 @@ import 'package:guternberg_book/features/home/domain/params/params_book.dart';
 
 abstract class BookRemoteDatasource {
   Future<BookResponse> getBooks(BookParams params);
+  Future<Book> getBook(int id);
 }
 
 class BookRemoteDatasourceImp implements BookRemoteDatasource {
@@ -19,6 +20,16 @@ class BookRemoteDatasourceImp implements BookRemoteDatasource {
         queryParameters: params.queryParams(),
       );
       return BookResponse.fromJson(response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Book> getBook(int id) async {
+    try {
+      final response = await dio.get("https://gutendex.com/book/$id");
+      return Book.fromJson(response.data);
     } catch (e) {
       rethrow;
     }
