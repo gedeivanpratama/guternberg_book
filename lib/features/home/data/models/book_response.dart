@@ -7,9 +7,22 @@ part 'book_response.g.dart';
 class BookResponse extends Equatable {
   final int count;
   final String next;
-  final dynamic previous;
+  final String previous;
   @JsonKey(name: "results")
   final List<Book> books;
+
+  BookResponse copyWith({
+    int? count,
+    String? next,
+    String? previous,
+    List<Book>? books,
+  }) =>
+      BookResponse(
+        count: count ?? this.count,
+        next: next ?? this.next,
+        previous: previous ?? this.previous,
+        books: books ?? this.books,
+      );
 
   const BookResponse({
     this.count = 0,
