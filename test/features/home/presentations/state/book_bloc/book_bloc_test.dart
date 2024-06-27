@@ -6,7 +6,7 @@ import 'package:guternberg_book/core/errors/errors_handling.dart';
 import 'package:guternberg_book/features/home/data/models/book_response.dart';
 import 'package:guternberg_book/features/home/domain/params/params_book.dart';
 import 'package:guternberg_book/features/home/domain/repositories/book_repository.dart';
-import 'package:guternberg_book/features/home/presentations/state/bloc/book_bloc.dart';
+import 'package:guternberg_book/features/home/presentations/state/book_bloc/book_bloc.dart';
 import 'package:test/test.dart';
 import 'package:mocktail/mocktail.dart';
 
