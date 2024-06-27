@@ -32,4 +32,23 @@ class BookRepositoryImp implements BookRepository {
       );
     }
   }
+
+  @override
+  Future<Result<Book, Exception>> getBook(int bookId) async {
+    try {
+      final result = await datasource.getBook(bookId);
+      return Success(result);
+    } on DioException catch (error) {
+      final statusCode = error.response?.statusCode ?? 500;
+      return switch (statusCode) {
+        HttpStatus.badRequest => Failure(CustomError(message: "Bad request")),
+        HttpStatus.notFound => Failure(CustomError(message: "Data Not Found")),
+        _ => Failure(CustomError(message: "Server Error")),
+      };
+    } catch (error) {
+      return Failure(
+        CustomError(message: "something when wrong !"),
+      );
+    }
+  }
 }

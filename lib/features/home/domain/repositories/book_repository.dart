@@ -5,4 +5,5 @@ import '../../../../core/errors/errors_handling.dart';
 
 abstract class BookRepository {
   Future<Result<BookResponse, Exception>> getBooks(BookParams params);
+  Future<Result<Book, Exception>> getBook(int bookId);
 }
