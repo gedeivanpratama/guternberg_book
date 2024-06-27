@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:dio/dio.dart';
+import 'package:guternberg_book/core/utils/flavor_settings.dart';
 import 'package:guternberg_book/features/home/data/models/book_response.dart';
 import 'package:guternberg_book/features/home/domain/params/params_book.dart';
 import 'package:guternberg_book/features/home/data/datasources/book_remote_datasource.dart';
@@ -15,10 +16,14 @@ void main() {
   late BookRemoteDatasourceImp datasource;
   late MockDio mockDio;
   final jsonData = jsonDecode(fixture('book_response.json'));
+  final FlavorSetting flavorSetting = FlavorSetting(Flavor.dev);
 
   setUp(() {
     mockDio = MockDio();
-    datasource = BookRemoteDatasourceImp(dio: mockDio);
+    datasource = BookRemoteDatasourceImp(
+      dio: mockDio,
+      flavorSetting: flavorSetting,
+    );
   });
 
   group(
@@ -27,7 +32,7 @@ void main() {
       final tBookParams = 1;
       final tBookResponse = Book.fromJson(jsonData["results"][0]);
       Future<Response<dynamic>> requestBook() => mockDio.get(
-            "https://gutendex.com/book/$tBookParams",
+            "${flavorSetting.baseUrl}/book/$tBookParams",
           );
       test(
         'should perform a GET request with the correct URL and id',
@@ -43,7 +48,7 @@ void main() {
           // Assert
           verify(
             () => mockDio.get(
-              "https://gutendex.com/book/$tBookParams",
+              "${flavorSetting.baseUrl}/book/$tBookParams",
             ),
           );
         },
@@ -72,7 +77,7 @@ void main() {
           when(requestBook).thenThrow(
             DioException(
               requestOptions: RequestOptions(
-                path: 'https://gutendex.com/books/$tBookParams',
+                path: '${flavorSetting.baseUrl}/books/$tBookParams',
               ),
             ),
           );
@@ -93,7 +98,7 @@ void main() {
       final tBookParams = BookParams(page: '1');
       final tBookResponse = BookResponse.fromJson(jsonData);
       Future<Response<dynamic>> requestBook() => mockDio.get(
-            "https://gutendex.com/books",
+            "${flavorSetting.baseUrl}/books",
             queryParameters: tBookParams.queryParams(),
           );
 
@@ -111,7 +116,7 @@ void main() {
           // Assert
           verify(
             () => mockDio.get(
-              "https://gutendex.com/books",
+              "${flavorSetting.baseUrl}/books",
               queryParameters: tBookParams.queryParams(),
             ),
           );
@@ -141,7 +146,7 @@ void main() {
           when(requestBook).thenThrow(
             DioException(
               requestOptions: RequestOptions(
-                path: 'https://gutendex.com/books',
+                path: '${flavorSetting.baseUrl}/books',
               ),
             ),
           );
