@@ -1,0 +1,66 @@
+{
+    "count": 73806,
+    "next": "https://gutendex.com/books/?page=3",
+    "previous": "https://gutendex.com/books/",
+    "results": [
+        {
+            "id": 2641,
+            "title": "A Room with a View",
+            "authors": [
+                {
+                    "name": "Forster, E. M. (Edward Morgan)",
+                    "birth_year": 1879,
+                    "death_year": 1970
+                }
+            ],
+            "translators": [],
+            "subjects": [
+                "British -- Italy -- Fiction",
+                "England -- Fiction",
+                "Florence (Italy) -- Fiction",
+                "Humorous stories",
+                "Young women -- Fiction"
+            ],
+            "bookshelves": [
+                "Italy"
+            ],
+            "languages": [
+                "en"
+            ],
+            "copyright": false,
+            "media_type": "Text",
+            "download_count": 49392
+        },
+        {
+            "id": 37106,
+            "title": "Little Women; Or, Meg, Jo, Beth, and Amy",
+            "authors": [
+                {
+                    "name": "Alcott, Louisa May",
+                    "birth_year": 1832,
+                    "death_year": 1888
+                }
+            ],
+            "translators": [],
+            "subjects": [
+                "Autobiographical fiction",
+                "Bildungsromans",
+                "Domestic fiction",
+                "Family life -- New England -- Fiction",
+                "March family (Fictitious characters) -- Fiction",
+                "Mothers and daughters -- Fiction",
+                "New England -- Fiction",
+                "Sisters -- Fiction",
+                "Young women -- Fiction"
+            ],
+            "bookshelves": [],
+            "languages": [
+                "en"
+            ],
+            "copyright": false,
+            "media_type": "Text",
+            "download_count": 48385
+        }
+        
+    ]
+}

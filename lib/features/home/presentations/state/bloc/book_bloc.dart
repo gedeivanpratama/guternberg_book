@@ -23,6 +23,8 @@ class BookBloc extends Bloc<BookEvent, BookState> {
 
     final prevState = (state as BookLoaded);
 
+    emit(BookLoading());
+
     final result = await repository.getBooks(event.params);
 
     if (result case Failure(exception: final error as CustomError)) {

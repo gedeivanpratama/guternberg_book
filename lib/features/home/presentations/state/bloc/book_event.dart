@@ -16,15 +16,6 @@ class BookFetch extends BookEvent {
   List<Object> get props => [params];
 }
 
-class BookDetailFetch extends BookEvent {
-  final int bookId;
-
-  BookDetailFetch(this.bookId);
-
-  @override
-  List<Object> get props => [bookId];
-}
-
 class BookLoadMore extends BookEvent {
   final BookParams params;
 
