@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guternberg_book/core/theme/custom_theme.dart';
 import 'package:guternberg_book/core/utils/flavor_settings.dart';
 import 'package:guternberg_book/core/utils/injection.dart';
-import 'package:guternberg_book/features/home/presentations/screens/home_screen.dart';
+import 'package:guternberg_book/features/home/main_screen.dart';
 import 'package:guternberg_book/l10n/l10n.dart';
 
 class App extends StatelessWidget {
@@ -18,7 +18,7 @@ class App extends StatelessWidget {
         theme: CustomTheme(context).get(),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
-        home: const HomeScreen(),
+        home: const MainScreen(),
       ),
     );
   }
