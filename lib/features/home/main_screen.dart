@@ -79,7 +79,6 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ],
                   currentIndex: _selectedIndex,
-                  selectedItemColor: Colors.amber[800],
                   onTap: (int index) {
                     switch (index) {
                       case 0:
