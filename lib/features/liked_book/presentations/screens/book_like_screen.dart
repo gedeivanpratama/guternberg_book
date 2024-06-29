@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:guternberg_book/core/widgets/book_item_widget.dart';
 
 class BookLikeScreen extends StatefulWidget {
   const BookLikeScreen({super.key});
@@ -14,23 +15,23 @@ class _BookLikeScreenState extends State<BookLikeScreen> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            leading: IconButton(onPressed: () {}, icon: Icon(Icons.sort)),
+            leading: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.sort),
+            ),
             floating: true,
             flexibleSpace: const FlexibleSpaceBar(
-              title: Text('SliverAppBar'),
+              titlePadding: EdgeInsets.all(12),
+              title: Text(
+                'Liked Book',
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return Container(
-                  color: index.isOdd ? Colors.white : Colors.black12,
-                  height: 100.0,
-                  child: Center(
-                    child:
-                        Text('$index', textScaler: const TextScaler.linear(5)),
-                  ),
-                );
+                return BookItemWidget();
               },
               childCount: 20,
             ),
