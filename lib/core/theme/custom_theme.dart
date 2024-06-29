@@ -49,6 +49,47 @@ class CustomTheme {
         iconTheme: IconThemeData(
           color: Color(0xFF436850),
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFF436850),
+              foregroundColor: Colors.white),
+        ),
+        checkboxTheme: CheckboxThemeData(
+          checkColor: MaterialStateProperty.all(
+            Color(0xFF436850),
+          ),
+        ),
+        listTileTheme: ListTileThemeData(
+          tileColor: Color(0xFF436850),
+        ),
+        dropdownMenuTheme: DropdownMenuThemeData(
+          menuStyle: MenuStyle(
+            padding: MaterialStateProperty.all(
+              EdgeInsets.all(12),
+            ),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            contentPadding: EdgeInsets.all(12),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(
+                color: Color(0xFF436850),
+              ),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(
+                color: Color(0xFF436850),
+              ),
+            ),
+          ),
+        ),
+
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Color(0xFF436850),
+          unselectedItemColor: Colors.white,
+          selectedItemColor: Color(0xffFBFADA),
+        ),
         chipTheme: ChipThemeData(
           labelStyle: TextStyle(color: Color(0xffFBFADA)),
           backgroundColor: Color(0xFF436850),

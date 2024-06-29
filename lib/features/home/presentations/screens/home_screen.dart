@@ -168,21 +168,41 @@ class FilterDialog<T> {
 
   Future<T?> show() {
     return showModalBottomSheet(
+      shape: BeveledRectangleBorder(
+          borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(30),
+        topRight: Radius.circular(30),
+      )),
       context: context,
       builder: (context) {
         return Container(
           height: MediaQuery.sizeOf(context).height * 0.5,
           padding: EdgeInsets.all(24),
           width: double.infinity,
+          decoration: BoxDecoration(
+            color: Color.fromARGB(255, 236, 236, 211),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextField(controller: _topicController),
+                  TextField(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(14),
+                      hintText: "Topic",
+                      fillColor: Colors.white,
+                    ),
+                    controller: _topicController,
+                  ),
                   SizedBox(height: 12),
                   DropdownMenu(
+                    label: Text("Language"),
                     controller: _languageController,
                     width: MediaQuery.sizeOf(context).width * 0.88,
                     dropdownMenuEntries: BookLanguage.values.map(
@@ -193,11 +213,6 @@ class FilterDialog<T> {
                         );
                       },
                     ).toList(),
-                  ),
-                  CheckboxListTile(
-                    title: Text("copyright"),
-                    value: false,
-                    onChanged: (value) {},
                   ),
                 ],
               ),
