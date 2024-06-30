@@ -10,7 +10,28 @@ class BookParams extends Equatable {
   final String? ids;
   final String? search;
   final String? topic;
+  final bool clear;
 
+  BookParams copyWith({
+    String? page,
+    String? authorYearStart,
+    BookLanguage? languages,
+    bool? copyright,
+    String? ids,
+    String? search,
+    String? topic,
+    bool? clear,
+  }) =>
+      BookParams(
+        ids: ids ?? this.ids,
+        page: page ?? this.page,
+        topic: topic ?? this.topic,
+        search: search ?? this.search,
+        languages: languages ?? this.languages,
+        copyright: copyright ?? this.copyright,
+        authorYearStart: authorYearStart ?? this.authorYearStart,
+        clear: clear ?? this.clear,
+      );
   BookParams({
     this.page,
     this.authorYearStart,
@@ -19,17 +40,18 @@ class BookParams extends Equatable {
     this.ids,
     this.search,
     this.topic,
+    this.clear = false,
   });
 
   Map<String, dynamic> queryParams() {
     Map<String, dynamic> data = {'page': page};
 
-    if (authorYearStart != null) data['author_year_start'] = authorYearStart;
-    if (languages != null) data['languages'] = languages;
-    if (copyright != null) data['copyright'] = copyright;
-    if (ids != null) data['ids'] = ids;
-    if (search != null) data['search'] = search;
-    if (topic != null) data['topic'] = topic;
+    if (languages != null)
+      data['languages'] = BookLanguage.values
+          .firstWhere((element) => languages == element)
+          .name;
+    if (search?.isNotEmpty ?? "".isNotEmpty) data['search'] = search;
+    if (topic?.isNotEmpty ?? "".isNotEmpty) data['topic'] = topic;
 
     return data;
   }
@@ -43,5 +65,6 @@ class BookParams extends Equatable {
         this.ids,
         this.search,
         this.topic,
+        this.clear,
       ];
 }

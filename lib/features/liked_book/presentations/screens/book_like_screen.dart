@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:guternberg_book/core/widgets/book_item_widget.dart';
 
 class BookLikeScreen extends StatefulWidget {
   const BookLikeScreen({super.key});
@@ -31,7 +30,8 @@ class _BookLikeScreenState extends State<BookLikeScreen> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return BookItemWidget();
+                // return BookItemWidget();
+                SizedBox();
               },
               childCount: 20,
             ),

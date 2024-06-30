@@ -9,11 +9,12 @@ sealed class BookEvent extends Equatable {
 
 class BookFetch extends BookEvent {
   final BookParams params;
+  final bool isReload;
 
-  BookFetch(this.params);
+  BookFetch(this.params, {this.isReload = false});
 
   @override
-  List<Object> get props => [params];
+  List<Object> get props => [params, isReload];
 }
 
 class BookLoadMore extends BookEvent {

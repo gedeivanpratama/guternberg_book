@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../features/home/data/models/book_response.dart';
+
 class BookItemWidget extends StatelessWidget {
-  const BookItemWidget({super.key});
+  final Book book;
+  const BookItemWidget({
+    super.key,
+    required this.book,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +32,7 @@ class BookItemWidget extends StatelessWidget {
                   Expanded(
                     flex: 5,
                     child: Text(
-                      "Romeo and Juliet, Romeo",
+                      book.title,
                       style: Theme.of(context).textTheme.headlineLarge,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -39,38 +45,43 @@ class BookItemWidget extends StatelessWidget {
                 crossAxisAlignment: WrapCrossAlignment.start,
                 alignment: WrapAlignment.start,
                 children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.person),
-                      Text(
-                        "Melville, Herman ",
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-                    ],
-                  ),
+                  if (book.authors.isNotEmpty)
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.person),
+                        Flexible(
+                          child: Text(
+                            "${book.authors.first.name} ",
+                            overflow: TextOverflow.clip,
+                            maxLines: 2,
+                          ),
+                        ),
+                      ],
+                    ),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(Icons.download),
                       Text(
-                        "172172 ",
+                        "${book.downloadCount} ",
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.calendar_month_outlined),
-                      Text(
-                        "1775 - 1817 ",
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 5,
-                      ),
-                    ],
-                  ),
+                  if (book.authors.isNotEmpty)
+                    //TODO : handle if the date is 0 or less than 0
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.calendar_month_outlined),
+                        Text(
+                          "${book.authors.first.birthYear} - ${book.authors.first.deathYear} ",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 5,
+                        ),
+                      ],
+                    ),
                 ],
               ),
               SizedBox(height: 12),
@@ -79,12 +90,12 @@ class BookItemWidget extends StatelessWidget {
                 alignment: WrapAlignment.start,
                 spacing: 10,
                 runSpacing: 0,
-                children: [
-                  Chip(label: Text("Gothic Fiction")),
-                  Chip(label: Text("Movie Books")),
-                  Chip(label: Text("Precursors of Science Fiction")),
-                  Chip(label: Text("...")),
-                ],
+                children: book.bookshelves.take(3).map((bookshelve) {
+                  return Chip(label: Text(bookshelve));
+                }).toList()
+                  ..addAll([
+                    if (book.bookshelves.length > 3) Chip(label: Text("..."))
+                  ]),
               )
             ],
           ),
