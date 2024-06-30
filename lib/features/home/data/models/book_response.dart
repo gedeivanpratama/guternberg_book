@@ -53,6 +53,8 @@ class Book extends Equatable {
   final String mediaType;
   @JsonKey(name: "download_count")
   final int downloadCount;
+  @JsonKey(name: "formats")
+  final Formats? formats;
 
   Book({
     this.id = 0,
@@ -65,6 +67,7 @@ class Book extends Equatable {
     this.copyright = true,
     this.mediaType = "",
     this.downloadCount = 0,
+    this.formats,
   });
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
@@ -83,6 +86,7 @@ class Book extends Equatable {
         copyright,
         mediaType,
         downloadCount,
+        formats,
       ];
 }
 
@@ -106,4 +110,25 @@ class Author extends Equatable {
 
   @override
   List<Object?> get props => [name, birthYear, deathYear];
+}
+
+@JsonSerializable(explicitToJson: true)
+class Formats extends Equatable {
+  @JsonKey(name: "image/jpeg")
+  final String image;
+  @JsonKey(name: "text/html")
+  final String webviewUrl;
+
+  Formats({
+    this.image = "",
+    this.webviewUrl = "",
+  });
+
+  factory Formats.fromJson(Map<String, dynamic> json) =>
+      _$FormatsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FormatsToJson(this);
+
+  @override
+  List<Object?> get props => [image, webviewUrl];
 }

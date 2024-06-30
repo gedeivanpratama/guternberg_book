@@ -42,6 +42,9 @@ class CustomTheme {
             color: Color(0xFF436850),
             fontWeight: FontWeight.bold,
           ),
+          bodySmall: TextStyle(
+            fontSize: 8,
+          ),
         ),
         dividerTheme: DividerThemeData(
           color: Color(0xFF436850),

@@ -2,12 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guternberg_book/features/home/domain/params/params_book.dart';
 import 'package:guternberg_book/features/home/presentations/state/book_bloc/book_bloc.dart';
 
-import '../../../../core/widgets/book_item_widget.dart';
+import '../../../../core/presentations/widgets/book_item_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   final ScrollController scrollController;
