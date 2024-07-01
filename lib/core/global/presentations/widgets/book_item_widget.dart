@@ -11,8 +11,8 @@ class BookItemWidget extends StatelessWidget {
   const BookItemWidget({
     super.key,
     required this.book,
-    required this.onLikedPressed,
-    required this.onDisLikedPressed,
+    this.onLikedPressed,
+    this.onDisLikedPressed,
   });
 
   @override
@@ -124,24 +124,50 @@ class BookItemWidget extends StatelessWidget {
             ),
           ),
           Positioned(
+            top: -10,
+            right: -10,
+            child: Row(
+              children: [
+                if (book.like)
+                  CircleAvatar(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    child: Icon(
+                      Icons.thumb_up_alt,
+                      color: Colors.lightGreen,
+                    ),
+                  ),
+                if (book.disLike)
+                  CircleAvatar(
+                    backgroundColor: Colors.lightGreen,
+                    child: Icon(
+                      Icons.thumb_down_alt,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          Positioned(
             bottom: -10,
             right: -10,
             child: Row(
               children: [
-                IconButton(
-                  key: key,
-                  style: IconButton.styleFrom(
-                    backgroundColor: Theme.of(context).primaryColor,
+                if (onLikedPressed != null)
+                  IconButton(
+                    key: key,
+                    style: IconButton.styleFrom(
+                      backgroundColor: Theme.of(context).primaryColor,
+                    ),
+                    onPressed: onLikedPressed,
+                    icon: Icon(Icons.thumb_up),
                   ),
-                  onPressed: onLikedPressed,
-                  icon: Icon(Icons.thumb_up),
-                ),
-                IconButton(
-                  style: IconButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor),
-                  onPressed: onDisLikedPressed,
-                  icon: Icon(Icons.thumb_down),
-                ),
+                if (onDisLikedPressed != null)
+                  IconButton(
+                    style: IconButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor),
+                    onPressed: onDisLikedPressed,
+                    icon: Icon(Icons.thumb_down),
+                  ),
               ],
             ),
           ),

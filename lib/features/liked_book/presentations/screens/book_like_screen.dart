@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/global/domain/repositories/book_local_repository.dart';
@@ -64,17 +63,6 @@ class _BookLikeScreenState extends State<BookLikeScreen> {
 
                           return BookItemWidget(
                             book: state.books[index],
-                            onLikedPressed: () {
-                              // final params = state.books[index];
-                              // _localBookBloc
-                              //     .add(LocalBookLikePressed(params));
-                            },
-                            onDisLikedPressed: () {
-                              // final params = state.books[index];
-                              // _localBookBloc.add(
-                              //   LocalBookDisLikePressed(params),
-                              // );
-                            },
                           );
                         },
                         childCount: state.books.length,
