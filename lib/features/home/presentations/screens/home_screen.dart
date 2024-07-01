@@ -73,6 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTapOutside: (_) {
                       FocusScope.of(context).unfocus();
                     },
+                    onSubmitted: (_) {
+                      _onSearchPressed();
+                    },
                   ),
                   background: Center(
                     child: Text(
