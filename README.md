@@ -13,6 +13,11 @@ after that run build_runner to generate model in terminal
 $ dart run build_runner build 
 ```
 
+run unit test in terminal :
+```sh
+$ flutter test --coverage
+```
+
 This project contains 3 flavors:
 
 - development
