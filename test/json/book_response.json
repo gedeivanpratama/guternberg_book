@@ -29,7 +29,13 @@
             ],
             "copyright": false,
             "media_type": "Text",
-            "download_count": 72633
+            "formats": {
+                "text/html": "https://www.gutenberg.org/ebooks/1400.html.images",
+                "image/jpeg": "https://www.gutenberg.org/cache/epub/1400/pg1400.cover.medium.jpg"
+            },
+            "download_count": 72633,
+            "like":false,
+            "disLike":false
         },
         {
             "id": 2701,
@@ -61,7 +67,13 @@
             ],
             "copyright": false,
             "media_type": "Text",
-            "download_count": 65191
+            "download_count": 65191,
+            "formats": {
+                "text/html": "https://www.gutenberg.org/ebooks/1400.html.images",
+                "image/jpeg": "https://www.gutenberg.org/cache/epub/1400/pg1400.cover.medium.jpg"
+            },
+            "like":false,
+            "disLike":false
         }
         
     ]
