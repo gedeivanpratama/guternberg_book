@@ -16,10 +16,7 @@ void main() {
 
       final expectedMap = {
         'page': '1',
-        'author_year_start': '1990',
-        'languages': BookLanguage.en,
-        'copyright': true,
-        'ids': '123',
+        'languages': 'en',
         'search': 'test',
         'topic': 'science',
       };
