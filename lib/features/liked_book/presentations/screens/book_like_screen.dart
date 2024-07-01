@@ -39,6 +39,7 @@ class _BookLikeScreenState extends State<BookLikeScreen> {
               ),
               floating: true,
               flexibleSpace: const FlexibleSpaceBar(
+                centerTitle: true,
                 titlePadding: EdgeInsets.all(12),
                 title: Text(
                   'Liked Book',
