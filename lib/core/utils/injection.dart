@@ -1,9 +1,11 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guternberg_book/core/global/data/repositories/book_local_repository_imp.dart';
 import 'package:guternberg_book/core/db/db_service.dart';
 import 'package:guternberg_book/core/utils/flavor_settings.dart';
+import 'package:guternberg_book/core/utils/network_info.dart';
 import 'package:guternberg_book/features/home/data/datasources/book_remote_datasource.dart';
 import 'package:guternberg_book/features/home/data/repositories/book_repository_imp.dart';
 import 'package:guternberg_book/features/home/domain/repositories/book_repository.dart';
@@ -26,6 +28,11 @@ class Injection {
       RepositoryProvider<Dio>(
         create: (context) => Dio(),
       ),
+      RepositoryProvider<NetworkInfo>(
+        create: (context) => NetworkInfo(
+          connectivity: Connectivity(),
+        ),
+      ),
       RepositoryProvider<BookLocalDataSource>(
         create: (context) => BookLocalDataSourceImp(
           db: context.read<DBService>(),
@@ -40,6 +47,7 @@ class Injection {
       RepositoryProvider<BookRepository>(
         create: (context) => BookRepositoryImp(
           datasource: context.read<BookRemoteDatasource>(),
+          networkInfo: context.read<NetworkInfo>(),
         ),
       ),
       RepositoryProvider<BookLocalRepository>(
