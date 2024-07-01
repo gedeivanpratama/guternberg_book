@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:guternberg_book/core/presentations/screens/reading_screen.dart';
+import 'package:guternberg_book/core/global/presentations/screens/reading_screen.dart';
 
-import '../../../features/home/data/models/book_response.dart';
+import '../../../../features/home/data/models/book_response.dart';
 
 class DetailBookScreen extends StatefulWidget {
   const DetailBookScreen({super.key, required this.book});

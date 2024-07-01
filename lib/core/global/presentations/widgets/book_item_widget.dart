@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:guternberg_book/core/presentations/screens/detail_book_screen.dart';
+import 'package:guternberg_book/core/global/presentations/screens/detail_book_screen.dart';
 
-import '../../../features/home/data/models/book_response.dart';
+import '../../../../features/home/data/models/book_response.dart';
 
 class BookItemWidget extends StatelessWidget {
   final Book book;
+  final void Function()? onLikedPressed;
+  final void Function()? onDisLikedPressed;
+
   const BookItemWidget({
     super.key,
     required this.book,
+    required this.onLikedPressed,
+    required this.onDisLikedPressed,
   });
 
   @override
@@ -125,15 +129,17 @@ class BookItemWidget extends StatelessWidget {
             child: Row(
               children: [
                 IconButton(
+                  key: key,
                   style: IconButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor),
-                  onPressed: () {},
+                    backgroundColor: Theme.of(context).primaryColor,
+                  ),
+                  onPressed: onLikedPressed,
                   icon: Icon(Icons.thumb_up),
                 ),
                 IconButton(
                   style: IconButton.styleFrom(
                       backgroundColor: Theme.of(context).primaryColor),
-                  onPressed: () {},
+                  onPressed: onDisLikedPressed,
                   icon: Icon(Icons.thumb_down),
                 ),
               ],

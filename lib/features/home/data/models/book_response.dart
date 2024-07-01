@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'book_response.g.dart';
@@ -39,22 +40,69 @@ class BookResponse extends Equatable {
   List<Object?> get props => [count, next, previous, books];
 }
 
+@HiveType(typeId: 1)
 @JsonSerializable(explicitToJson: true)
 class Book extends Equatable {
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String title;
+  @HiveField(2)
   final List<Author> authors;
+  @HiveField(3)
   final List<Author> translators;
+  @HiveField(4)
   final List<String> subjects;
+  @HiveField(5)
   final List<String> bookshelves;
+  @HiveField(6)
   final List<String> languages;
+  @HiveField(7)
   final bool copyright;
+  @HiveField(8)
   @JsonKey(name: "media_type")
   final String mediaType;
+  @HiveField(9)
   @JsonKey(name: "download_count")
   final int downloadCount;
+  @HiveField(10)
   @JsonKey(name: "formats")
   final Formats? formats;
+  @HiveField(11)
+  final bool like;
+  @HiveField(12)
+  final bool disLike;
+
+  Book copyWith({
+    int? id,
+    String? title,
+    List<Author>? authors,
+    List<Author>? translators,
+    List<String>? subjects,
+    List<String>? bookshelves,
+    List<String>? languages,
+    bool? copyright,
+    String? mediaType,
+    int? downloadCount,
+    Formats? format,
+    bool? like,
+    bool? disLike,
+  }) =>
+      Book(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        authors: authors ?? this.authors,
+        translators: translators ?? this.translators,
+        subjects: subjects ?? this.subjects,
+        bookshelves: bookshelves ?? this.bookshelves,
+        languages: languages ?? this.languages,
+        copyright: copyright ?? this.copyright,
+        mediaType: mediaType ?? this.mediaType,
+        formats: formats ?? this.formats,
+        downloadCount: downloadCount ?? this.downloadCount,
+        like: like ?? this.like,
+        disLike: disLike ?? this.disLike,
+      );
 
   Book({
     this.id = 0,
@@ -68,6 +116,8 @@ class Book extends Equatable {
     this.mediaType = "",
     this.downloadCount = 0,
     this.formats,
+    this.disLike = false,
+    this.like = false,
   });
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
@@ -87,14 +137,20 @@ class Book extends Equatable {
         mediaType,
         downloadCount,
         formats,
+        like,
+        disLike,
       ];
 }
 
+@HiveType(typeId: 2)
 @JsonSerializable(explicitToJson: true)
 class Author extends Equatable {
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   @JsonKey(name: "birth_year")
   final int birthYear;
+  @HiveField(3)
   @JsonKey(name: "death_year")
   final int deathYear;
 
@@ -112,10 +168,13 @@ class Author extends Equatable {
   List<Object?> get props => [name, birthYear, deathYear];
 }
 
+@HiveType(typeId: 3)
 @JsonSerializable(explicitToJson: true)
 class Formats extends Equatable {
+  @HiveField(1)
   @JsonKey(name: "image/jpeg")
   final String image;
+  @HiveField(2)
   @JsonKey(name: "text/html")
   final String webviewUrl;
 
