@@ -5,6 +5,9 @@ class CustomTheme {
   final BuildContext context;
 
   ThemeData get() => ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color(0xFF436850),
+        ),
         appBarTheme: AppBarTheme(
           backgroundColor: Color(0xFF436850),
           titleTextStyle: TextStyle(color: Color.fromRGBO(236, 244, 214, 1)),

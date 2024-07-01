@@ -267,21 +267,35 @@ class FilterDialog<T> {
                     controller: _topicController,
                   ),
                   SizedBox(height: 12),
-                  DropdownMenu(
-                    initialSelection: bookParams.languages,
-                    onSelected: (value) {
-                      _language = value;
-                    },
-                    label: Text("Language"),
-                    width: MediaQuery.sizeOf(context).width * 0.88,
-                    dropdownMenuEntries: BookLanguage.values.map(
-                      (lang) {
-                        return DropdownMenuEntry(
-                          value: lang,
-                          label: lang.name,
-                        );
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: DropdownMenu(
+                      initialSelection: bookParams.languages,
+                      menuStyle: MenuStyle(
+                        surfaceTintColor: MaterialStateProperty.all(
+                          Colors.white,
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                          Colors.white,
+                        ),
+                      ),
+                      onSelected: (value) {
+                        _language = value;
                       },
-                    ).toList(),
+                      label: Text("Language"),
+                      width: MediaQuery.sizeOf(context).width * 0.88,
+                      dropdownMenuEntries: BookLanguage.values.map(
+                        (lang) {
+                          return DropdownMenuEntry(
+                            value: lang,
+                            label: lang.name,
+                          );
+                        },
+                      ).toList(),
+                    ),
                   ),
                 ],
               ),
