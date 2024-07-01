@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guternberg_book/features/home/domain/params/params_book.dart';
 import 'package:guternberg_book/features/home/presentations/state/book_bloc/book_bloc.dart';
-import 'package:guternberg_book/features/home/presentations/state/local_book_bloc/local_book_bloc.dart';
+import 'package:guternberg_book/features/liked_book/presentations/state/local_book_bloc/local_book_bloc.dart';
 
 import '../../../../core/global/domain/repositories/book_local_repository.dart';
 import '../../../../core/global/presentations/widgets/book_item_widget.dart';
