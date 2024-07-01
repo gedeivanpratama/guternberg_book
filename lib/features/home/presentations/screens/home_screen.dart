@@ -85,50 +85,48 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              BlocConsumer<LocalBookBloc, LocalBookState>(
+              BlocListener<LocalBookBloc, LocalBookState>(
                 listener: _likedBookListener,
-                builder: (context, state) {
-                  return BlocBuilder<BookBloc, BookState>(
-                    builder: (context, state) {
-                      return switch (state) {
-                        BookInitial() => SliverLoadingWidget(),
-                        BookLoading() => SliverLoadingWidget(),
-                        BookFailure() => SliverErrorWidget(error: state),
-                        BookLoaded() => SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                              (BuildContext context, int index) {
-                                if (state.data.books.isEmpty) {
-                                  return Center(child: Text("Book Not Found"));
-                                }
-                                if (index >= state.data.books.length) {
-                                  return SizedBox(
-                                    height: 80,
-                                    child: Center(
-                                        child: CircularProgressIndicator()),
-                                  );
-                                }
-                                return BookItemWidget(
-                                  book: state.data.books[index],
-                                  onLikedPressed: () {
-                                    final params = state.data.books[index];
-                                    _localBookBloc
-                                        .add(LocalBookLikePressed(params));
-                                  },
-                                  onDisLikedPressed: () {
-                                    final params = state.data.books[index];
-                                    _localBookBloc.add(
-                                      LocalBookDisLikePressed(params),
-                                    );
-                                  },
+                child: BlocBuilder<BookBloc, BookState>(
+                  builder: (context, state) {
+                    return switch (state) {
+                      BookInitial() => SliverLoadingWidget(),
+                      BookLoading() => SliverLoadingWidget(),
+                      BookFailure() => SliverErrorWidget(error: state),
+                      BookLoaded() => SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (BuildContext context, int index) {
+                              if (state.data.books.isEmpty) {
+                                return Center(child: Text("Book Not Found"));
+                              }
+                              if (index >= state.data.books.length) {
+                                return SizedBox(
+                                  height: 80,
+                                  child: Center(
+                                      child: CircularProgressIndicator()),
                                 );
-                              },
-                              childCount: state.data.books.length + 1,
-                            ),
+                              }
+                              return BookItemWidget(
+                                book: state.data.books[index],
+                                onLikedPressed: () {
+                                  final params = state.data.books[index];
+                                  _localBookBloc
+                                      .add(LocalBookLikePressed(params));
+                                },
+                                onDisLikedPressed: () {
+                                  final params = state.data.books[index];
+                                  _localBookBloc.add(
+                                    LocalBookDisLikePressed(params),
+                                  );
+                                },
+                              );
+                            },
+                            childCount: state.data.books.length + 1,
                           ),
-                      };
-                    },
-                  );
-                },
+                        ),
+                    };
+                  },
+                ),
               ),
             ],
           ),
