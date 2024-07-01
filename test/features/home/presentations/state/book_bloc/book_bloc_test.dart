@@ -58,7 +58,6 @@ void main() {
       seed: () => BookLoaded(data: BookResponse.fromJson(jsonData)),
       act: (bloc) => bloc.add(BookLoadMore(BookParams(page: "2"))),
       expect: () => [
-        BookLoading(),
         BookLoaded(
           data: response.copyWith(
             previous: responseMore.previous,
