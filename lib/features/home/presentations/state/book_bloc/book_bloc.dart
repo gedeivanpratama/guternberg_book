@@ -33,6 +33,7 @@ class BookBloc extends Bloc<BookEvent, BookState> {
 
   FutureOr<void> _onBookLoadMore(BookLoadMore event, emit) async {
     if (state is! BookLoaded) return;
+    if ((state as BookLoaded).data.next.isEmpty) return;
 
     final prevState = (state as BookLoaded);
     final params = event.params

@@ -100,12 +100,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               if (state.data.books.isEmpty) {
                                 return EmptyWidget();
                               }
-                              if (index >= state.data.books.length) {
-                                return SizedBox(
-                                  height: 80,
-                                  child: Center(
-                                      child: CircularProgressIndicator()),
-                                );
+                              if (state.data.next.isNotEmpty) {
+                                if (index >= state.data.books.length) {
+                                  return SizedBox(
+                                    height: 80,
+                                    child: Center(
+                                        child: CircularProgressIndicator()),
+                                  );
+                                }
                               }
                               return BookItemWidget(
                                 book: state.data.books[index],
@@ -122,7 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               );
                             },
-                            childCount: state.data.books.length + 1,
+                            childCount: state.data.next.isNotEmpty
+                                ? state.data.books.length + 1
+                                : state.data.books.length,
                           ),
                         ),
                     };
@@ -138,8 +142,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _onReloadTriggered() {
     return Future.sync(() {
-      _bookBloc.add(BookFetch(BookParams(page: "1"), isReload: true));
       _searchController.clear();
+      _bookBloc.add(BookFetch(BookParams(page: "1"), isReload: true));
     });
   }
 
