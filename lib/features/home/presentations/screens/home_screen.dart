@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:guternberg_book/features/home/domain/params/params_book.dart';
+import 'package:guternberg_book/core/global/presentations/widgets/error_widget.dart';
+import 'package:guternberg_book/core/global/presentations/widgets/loading_widget.dart';
 import 'package:guternberg_book/features/home/presentations/state/book_bloc/book_bloc.dart';
 import 'package:guternberg_book/features/liked_book/presentations/state/local_book_bloc/local_book_bloc.dart';
 
@@ -192,58 +193,5 @@ class _HomeScreenState extends State<HomeScreen> {
         SnackBar(content: Text(state.message)),
       );
     }
-  }
-}
-
-class SliverErrorWidget extends StatelessWidget {
-  final BookFailure error;
-  const SliverErrorWidget({super.key, required this.error});
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: Center(
-        child: Container(
-          margin: EdgeInsets.all(15),
-          decoration: BoxDecoration(
-              color: Colors.orangeAccent,
-              borderRadius: BorderRadius.circular(15)),
-          padding: EdgeInsets.all(15),
-          child: Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.yellow,
-                child: Icon(
-                  Icons.warning_amber,
-                ),
-              ),
-              SizedBox(width: 15),
-              Flexible(
-                child: Text(
-                  error.message,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SliverLoadingWidget extends StatelessWidget {
-  const SliverLoadingWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-      child: SizedBox(
-        height: 100,
-        child: Center(child: CircularProgressIndicator()),
-      ),
-    );
   }
 }

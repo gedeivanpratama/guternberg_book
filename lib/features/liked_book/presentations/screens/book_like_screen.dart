@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/global/domain/repositories/book_local_repository.dart';
 import '../../../../core/global/presentations/widgets/book_item_widget.dart';
-import '../../../home/presentations/screens/home_screen.dart';
+import '../../../../core/global/presentations/widgets/loading_widget.dart';
 import '../state/local_book_bloc/local_book_bloc.dart';
 
 class BookLikeScreen extends StatefulWidget {
