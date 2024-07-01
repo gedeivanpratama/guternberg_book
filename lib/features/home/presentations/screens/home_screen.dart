@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:guternberg_book/core/global/presentations/widgets/empty_widget.dart';
 import 'package:guternberg_book/features/home/domain/params/params_book.dart';
 import 'package:guternberg_book/core/global/presentations/widgets/error_widget.dart';
 import 'package:guternberg_book/core/global/presentations/widgets/loading_widget.dart';
@@ -97,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
                               if (state.data.books.isEmpty) {
-                                return Center(child: Text("Book Not Found"));
+                                return EmptyWidget();
                               }
                               if (index >= state.data.books.length) {
                                 return SizedBox(
