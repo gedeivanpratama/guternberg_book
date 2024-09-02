@@ -51,7 +51,7 @@ jobs:
        #6 Building APK
       - name: Build APK
         # run: flutter build apk --release
-        run: flutter build apk --flavor development --target lib/main_development.dart --release
+        run: flutter build apk --flavor development --target lib/main_development.dart
 
         #7 Building App Bundle (aab)
       # - name: Build appBundle
