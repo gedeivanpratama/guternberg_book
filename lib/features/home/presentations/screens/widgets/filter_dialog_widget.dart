@@ -56,10 +56,10 @@ class FilterDialog<T> {
                     child: DropdownMenu(
                       initialSelection: bookParams.languages,
                       menuStyle: MenuStyle(
-                        surfaceTintColor: MaterialStateProperty.all(
+                        surfaceTintColor: WidgetStateProperty.all(
                           Colors.white,
                         ),
-                        backgroundColor: MaterialStateProperty.all(
+                        backgroundColor: WidgetStateProperty.all(
                           Colors.white,
                         ),
                       ),

@@ -93,6 +93,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   // TODO : not ready yet
+  // ignore: unused_element
   void _showSettingDialog(int index) {
     switch (index) {
       case 0:

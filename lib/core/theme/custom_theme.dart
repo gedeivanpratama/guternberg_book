@@ -25,7 +25,7 @@ class CustomTheme {
         ),
         iconButtonTheme: IconButtonThemeData(
           style: ButtonStyle(
-            iconColor: MaterialStateProperty.all(
+            iconColor: WidgetStateProperty.all(
               Color(0xffFBFADA),
             ),
           ),
@@ -61,7 +61,7 @@ class CustomTheme {
               foregroundColor: Colors.white),
         ),
         checkboxTheme: CheckboxThemeData(
-          checkColor: MaterialStateProperty.all(
+          checkColor: WidgetStateProperty.all(
             Color(0xFF436850),
           ),
         ),
@@ -70,7 +70,7 @@ class CustomTheme {
         ),
         dropdownMenuTheme: DropdownMenuThemeData(
           menuStyle: MenuStyle(
-            padding: MaterialStateProperty.all(
+            padding: WidgetStateProperty.all(
               EdgeInsets.all(12),
             ),
           ),
