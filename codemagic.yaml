@@ -1,7 +1,11 @@
 workflows:
-    sample-workflow:
+    default-workflow:
         environment:
             flutter: stable
+        triggering:
+          events:
+            - tag
+            - push
         scripts:
           - name: Set up local.properties
             script: | 
