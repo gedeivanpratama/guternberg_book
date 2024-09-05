@@ -56,4 +56,4 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build appbundle --flavor development --target lib/main_development.dart --release
+      - run: flutter build apk --flavor development --target lib/main_development.dart --release
